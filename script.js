@@ -30,9 +30,10 @@ camera.position.set(-10, 30, 30);
 orbit.update();
 
 const boxGeometry = new THREE.BoxGeometry();
-const boxMaterial = new THREE.MeshBasicMaterial({color: 0x00FF00});
+const boxMaterial = new THREE.MeshBasicMaterial({color: 0xffb6c1});
 const box = new THREE.Mesh(boxGeometry, boxMaterial);
 scene.add(box);
+
 
 const planeGeometry = new THREE.PlaneGeometry(30, 30);
 const planeMaterial = new THREE.MeshStandardMaterial({
@@ -87,8 +88,9 @@ scene.fog = new THREE.FogExp2(0xffffff, 0.01);
 // renderer.setClearColor(0xffea00);
 const textureLoader = new THREE.TextureLoader();
 scene.background = textureLoader.load(Star);
-// const cubeTextureLoader = new THREE.cubeTextureLoader();
-// scene.background = cubeTextureLoader.load([
+
+// const cubeTextureLoader = new THREE.CubeTextureLoader();
+// const texture = cubeTextureLoader.load([
 //     Nebula,
 //     Nebula,
 //     Star,
@@ -96,12 +98,18 @@ scene.background = textureLoader.load(Star);
 //     Star,
 //     Star
 // ]);
+// scene.background = texture;
 
 const box2Geometry = new THREE.BoxGeometry(4, 4, 4);
-const box2Material = new THREE.MeshBasicMaterial({color: 0x00ff00});
+const box2Material = new THREE.MeshBasicMaterial({
+    color: 0xffff00,
+    // map: textureLoader.load(Nebula)
+});
 const box2 = new THREE.Mesh(box2Geometry, box2Material);
 scene.add(box2);
 box2.position.set(0, 15, 10);
+box2.material.map = textureLoader.load(Nebula);
+box.material.map = textureLoader.load(Nebula);
 
 const gui = new dat.GUI();
 
